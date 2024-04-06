@@ -26,7 +26,7 @@ import org.asciidoctor.jruby.extension.spi.ExtensionRegistry;
  * @author Dmitriy Schiller
  */
 @AutoService(ExtensionRegistry.class)
-public class ExtensionsRegistry implements ExtensionRegistry {
+public final class ExtensionsRegistry implements ExtensionRegistry {
 
     @Override
     public void register(Asciidoctor asciidoctor) {
