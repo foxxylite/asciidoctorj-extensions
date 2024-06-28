@@ -17,6 +17,9 @@
 package io.foxxylite.asciidoctor;
 
 import com.google.auto.service.AutoService;
+import io.foxxylite.asciidoctor.condition.ConditionBlockMacroProcessor;
+import io.foxxylite.asciidoctor.condition.ConditionBlockProcessor;
+import io.foxxylite.asciidoctor.condition.ConditionInlineMacroProcessor;
 import org.asciidoctor.Asciidoctor;
 import org.asciidoctor.jruby.extension.spi.ExtensionRegistry;
 
@@ -30,6 +33,14 @@ public final class ExtensionsRegistry implements ExtensionRegistry {
 
     @Override
     public void register(Asciidoctor asciidoctor) {
+        asciidoctor.javaExtensionRegistry()
+            /* Inline macro */
+            .inlineMacro(ConditionInlineMacroProcessor.class)
 
+            /* Blocks macro */
+            .blockMacro(ConditionBlockMacroProcessor.class)
+
+            /* Blocks */
+            .block(ConditionBlockProcessor.class);
     }
 }
