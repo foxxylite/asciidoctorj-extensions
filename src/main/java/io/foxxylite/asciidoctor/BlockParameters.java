@@ -18,6 +18,7 @@ package io.foxxylite.asciidoctor;
 
 import org.asciidoctor.ast.Document;
 
+import java.util.Collections;
 import java.util.Map;
 import java.util.Objects;
 
@@ -35,12 +36,12 @@ public abstract class BlockParameters extends DocumentParameters {
     private final Map<String, Object> attributes;
 
     public BlockParameters(Map<String, Object> attributes) {
-        this.attributes = attributes;
+        this.attributes = Collections.unmodifiableMap(attributes);
     }
 
     public BlockParameters(Map<String, Object> attributes, Document document) {
         super(document);
-        this.attributes = attributes;
+        this.attributes = Collections.unmodifiableMap(attributes);
     }
 
     public int getValue(String key, int defaultValue) {
